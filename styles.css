@@ -1,0 +1,113 @@
+* {
+  font-family:verdana,sans-serif;
+  font-size  :14pt;
+}
+
+.custom-navbar-background {
+  background:#f4d1eb90;
+}
+
+html {
+  background:#bcba71
+}
+
+#wa-logo-text {
+  font-family:Georgia;
+  font-weight:bold;
+  font-style :italic;
+  font-size  :50px;
+  color      :rgb(0, 110, 255);
+  }
+
+  #wa-logo {
+  max-width         :100px;
+  height            :75px;
+  position          :absolute;
+  top               :50%;
+  left              :50%;
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+}
+
+.links-container {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+}
+
+  .links-container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+    .links-container ul li a {
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.home-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+  text-align: center;
+}
+
+.error-head {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+  text-align: center;
+}
+
+.errors {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+  text-align: center;
+}
+
+.form {
+  position: absolute;
+  top: 60%;
+  left: 92%;
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */ 
+  width:100%;
+  flex:10;
+}
+
+.invalid-feedback {
+  color:rgb(255, 0, 153);
+  
+}
+
+.col-md-2 {
+  padding-block: 1%;
+}
+
+.upin-header {
+  position: absolute;
+  top: 20%;
+  left: 50%;  
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+  font-family:Georgia;
+  font-weight:bold;
+  font-style :italic;
+  font-size  :30px;
+  color      :rgb(0, 110, 255);
+}
+
+.signup-btn{
+  background-color:rgb(255, 0, 153);
+}
+
+
+
+
+
+
