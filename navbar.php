@@ -1,4 +1,5 @@
 <?php //03
+session_start();
 require_once 'setup.php';
 
 echo <<<_HEAD
@@ -51,6 +52,7 @@ echo <<<_NAVBAR
               Your Profile
             </a>
             <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="#">Cart</a></li>
               <li><a class="dropdown-item" href="#">Messages</a></li>
               <li><a class="dropdown-item" href="#">Members</a></li>
@@ -71,4 +73,17 @@ echo <<<_NAVBAR
 </nav>
 _NAVBAR;
 
+?>
+
+<?php
+if (isset($_SESSION['username']))
+  {
+    $username = $_SESSION['username'];
+    $loggedin = TRUE;
+    $userstr  = "Logged in as: $username";
+  }
+  else $loggedin = FALSE;
+  {
+    $userstr = "Not logged in";
+  }
 ?>

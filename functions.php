@@ -72,18 +72,18 @@
     return str_replace("'", "", $result); // So now remove them
   }
 
-  function showProfile($user)
+  function showProfile($username)
   {
     global $pdo;
 
-    if (file_exists("$user.jpg"))
-      echo "<img src='$user.jpg' style='float:left;'>";
+    if (file_exists("$username.jpg"))
+      echo "<img src='$username.jpg' style='float:left;'>";
 
-    $result = $pdo->query("SELECT * FROM profiles WHERE user='$user'");
+    $result = $pdo->query("SELECT * FROM profiles WHERE user='$username'");
 
     while ($row = $result->fetch())
     {
-      die(stripslashes($row['text']) . "<br style='clear:left;'><br>");
+      die(stripslashes($row['text']));
     }
     
     echo "<p>Nothing to see here, yet</p><br>";

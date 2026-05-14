@@ -1,6 +1,7 @@
 <?php //04
 require_once 'navbar.php';
 
+
 echo <<<_HOME
 <div class="home-container">
   <h1> Welcome to Waste Away! </h1>

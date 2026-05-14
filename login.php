@@ -32,6 +32,7 @@ _LOGIN;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = sanitizeString($_POST["username"]);
   $password = sanitizeString($_POST["password"]);
+  $email = sanitizeString($_POST["email"]);
 
   // Query for the user's password
   $result = queryMysql("SELECT password FROM members WHERE username='$username'");
