@@ -1,5 +1,7 @@
 <?php 
 require_once 'navbar.php';
+//<section> --- Can improve SEO by identifying content themes.
+
 
 if($loggedin) {
 
@@ -10,13 +12,14 @@ if($loggedin) {
     $text = sanitizeString($_POST['text']);
     $text = preg_replace('/\s\s+/', ' ', $text);
 
-    if ($result->rowCount())
+    if ($result->rowCount()){
          queryMysql("UPDATE profiles SET text='$text' where user='$username'");
+  }
     else queryMysql("INSERT INTO profiles VALUES('$username', '$text')");
   }
   else
   {
-    if ($result->rowCount())
+if ($result->rowCount())
     {
       $row  = $result->fetch();
       $text = stripslashes($row['text']);
@@ -28,21 +31,20 @@ if($loggedin) {
 
 echo <<<_PROFILE
 
-<div class="profile-container">
+  <div class="profile-container">
   <h1>$username's Profile</h1>
   <img class="profile-pic" src='$username.jpg' style='float:left;'>
+  </div>
 
-</div>
-
-<form class="update-bio" data-ajax='false' method='post' enctype='multipart/form-data'>
+      <form class="update-bio" data-ajax='false' method='post' enctype='multipart/form-data'>
       <h3>$text</h3>
-      <textarea name='text' placeholder='Edit your bio'></textarea><br>
+      <textarea name='text' placeholder='Edit your bio'></textarea>
+      <br>
       Update your profile picture: <input type='file' name='image'>
-      <span><input type='submit' value='Save Profile'></span>
-      </form>
+      <br><br>
+      <button class="btn btn-primary signup-btn" input type="submit" value="Save Profile">Save Profile</button>
+      </form>  
 _PROFILE;
-
-
 
   if (isset($_FILES['image']['name']))
   {
@@ -92,11 +94,11 @@ _PROFILE;
     }
   }
 
-  //showProfile($user);
-// Show listings (img and price) as default profile view
-//So when you click on  a member profule you see their listings as you the deafult.
-//
-
+  <<<_LISTINGS
+  <div class="scroll-container">
+  <h2>Your Listings</h2>
+  <div class="listings-grid">
+_LISTINGS;
 
 } else {
  echo "<script>alert('Please log in to view your profile.'); window.location.href = 'login.php';</script>";

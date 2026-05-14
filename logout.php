@@ -1,6 +1,8 @@
 <?php 
 require_once 'navbar.php';
 
+  if ($loggedin)
+  {
 echo <<<_HEAD
   <head>
     <title>Logout</title>
@@ -22,11 +24,9 @@ echo <<<_HEAD
       </div>            
 _LOGOUT;
 
-
-  if (isset($_SESSION['user']))
-  {
-    destroySession();
+      session_unset();
+      session_destroy();
   }
-  else echo "<script>alert('You are not currently logged in. Please log in to access this page.'); window.location.href='login.php';</script>";
+  else echo "<script>alert('You are not currently logged in.'); window.location.href='login.php';</script>";
 
 ?>

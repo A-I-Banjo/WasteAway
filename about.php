@@ -16,7 +16,15 @@
         <div class="container mt-5 pt-5">
             <h1>About Us</h1>
             <p>Welcome to Waste Away! We are a team of passionate individuals dedicated to making a positive impact on the environment by promoting sustainable waste management practices.</p>
-            
+
+            <p> Ever wondered how you could get rid of food you know you won't finish?<br> 
+                Waste Away is here to answer that question with a simple and convenient website that offers
+                services to help you reduce, reuse, and recycle. <br>
+                Whether you're looking to be more eco-friendly, or just re-sell excess food items, we've got you covered. <br>
+                Join us in our mission to create a cleaner and greener world. <br>
+                Explore our website to learn more about how you can make a difference with Waste Away! </p>  
+
+
             <h2>Our Mission</h2>
             <p>Our mission is to reduce waste and promote recycling by providing an easy-to-use platform for users to find nearby recycling centers, learn about proper waste disposal methods, and connect with local environmental initiatives.</p>
             

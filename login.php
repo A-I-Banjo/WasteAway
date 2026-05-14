@@ -6,6 +6,7 @@ require_once 'navbar.php';
   <title>Waste Away - Login</title>
 </head>
   <h1 class="upin-header"> LOGIN </h1>
+  
   <form name="login-form" class="form" method="post">  
     <div class="col-md-2">
       <div class="input-group has-validation">

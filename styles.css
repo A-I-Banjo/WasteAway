@@ -78,7 +78,7 @@ html {
   left: 92%;
   transform: translate(-50%, -50%); /* Perfectly centers absolute elements */ 
   width:100%;
-  flex:10;
+  
 }
 
 
@@ -88,9 +88,11 @@ html {
 
 .upin-header {
   position: absolute;
-  top: 20%;
+
+  margin-top: 15%;
   left: 50%;  
   transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+  
   font-family:Georgia;
   font-weight:bold;
   font-style :italic;
@@ -130,10 +132,26 @@ html {
 .update-bio{
   background-color: aqua;
 }
-  .update-pfp{
-    margin: 15.5%;
-  }
 
+.image-container{
+  margin-top: 7%;
+  max-width: 100%;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.card-img-top {
+  width: 100%;
+  height: 300px;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.card-body {
+  text-align: center; /* Centers the text within the card body */
+  background-color:#f4d1eb90;
+}
+  
   input[type="file"]::file-selector-button {
   background-color: rgb(255, 0, 153); /* Set your desired color */
   color: white;
@@ -147,5 +165,33 @@ input[type="file"]::file-selector-button:hover {
   background-color: blue;
 }
 
+
+div.scroll-container {
+  background-color: blueviolet;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 5px;
+}
+
+div.scroll-container img {
+  padding: 10px;
+  width: 400px;
+  height: 600px;
+}
+
+.listings{
+  margin: 10px; 
+}
+
+.upload-form{
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Perfectly centers absolute elements */
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+
+}
 
 

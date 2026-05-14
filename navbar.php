@@ -53,7 +53,7 @@ echo <<<_NAVBAR
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Cart</a></li>
+              <li><a class="dropdown-item" href="upload.php">Upload</a></li>
               <li><a class="dropdown-item" href="#">Messages</a></li>
               <li><a class="dropdown-item" href="#">Members</a></li>
               <li>
