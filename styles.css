@@ -77,8 +77,7 @@ html {
   top: 60%;
   left: 92%;
   transform: translate(-50%, -50%); /* Perfectly centers absolute elements */ 
-  width:100%;
-  
+  width: 100%;
 }
 
 

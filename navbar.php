@@ -13,6 +13,8 @@ echo <<<_HEAD
     <link rel='stylesheet' href='bootstrap-5.3.8-dist/css/bootstrap.min.css'>
     <link rel='stylesheet' href='jquery/jquery.mobile-1.4.5.min.css'>
     <link rel='stylesheet' href='styles.css' type='text/css'>
+
+    
     <title>Waste Away</title>
   </head>
 _HEAD;

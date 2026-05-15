@@ -28,7 +28,10 @@ _LOGIN;
 ?>
 
 <?php //Login Validation
-
+if(isset($_SESSION['username'])) {
+  echo "<script>alert('You are already logged in.'); window.location.href = 'home.php';</script>";
+  exit();
+}
 // Check if request is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = sanitizeString($_POST["username"]);

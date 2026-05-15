@@ -1,6 +1,7 @@
 <?php 
 require_once 'navbar.php';
-//<section> --- Can improve SEO by identifying content themes.
+
+//INCLUDE REVIEWS AS A SECURITY FEATURE. 
 
 
 if($loggedin) {
@@ -94,11 +95,37 @@ _PROFILE;
     }
   }
 
-  <<<_LISTINGS
-  <div class="scroll-container">
-  <h2>Your Listings</h2>
-  <div class="listings-grid">
-_LISTINGS;
+
+echo '<h2>Your Listings</h2>';
+
+$images = queryMysql("SELECT * FROM items WHERE member_id = (SELECT member_id FROM members WHERE username='$username')")->fetchAll(PDO::FETCH_ASSOC);
+echo "<div class='row image-container'>"; 
+foreach ($images as $image) {
+    echo "<div class='col-md-3 mb-3'>";
+    echo "<div class='card'>";
+    echo "<img src='" . $image['image_path'] . "' class='card-img-top' alt='" . $image['item_name'] . "'>";
+    echo "<div class='card-body'>";
+    echo "<h5 class='card-title'>" . $image['item_name'] . "</h5>";
+    echo "<p class='card-text'>Price: R" . $image['item_price'] . "</p>";
+    echo "<p class='card-text'>Quantity: " . $image['quantity'] . "</p>";
+    echo "<form method='post' action='profile.php' enctype='multipart/form-data'>";
+    echo "<p class='card-text'><button class='btn btn-primary signup-btn' type='submit' name='delete'>Delete</button></p>";
+    echo "<p class='card-text'><button class='btn btn-primary signup-btn' type='submit' name='edit'>Edit</button></p>";
+    echo "</form>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+    if(isset($_POST['delete'])) {
+    queryMysql("DELETE FROM items WHERE item_id='" . $image['item_id'] . "'");
+    echo "<script>alert('Item deleted successfully.'); window.location.href = 'profile.php';</script>";
+
+    if(isset($_POST['edit'])) {
+    $_SESSION['edit_item_id'] = $image['item_id'];
+    echo "<script>window.location.href='edit_item.php';</script>";
+}
+}
+} 
+echo   "</div>"; 
 
 } else {
  echo "<script>alert('Please log in to view your profile.'); window.location.href = 'login.php';</script>";

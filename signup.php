@@ -41,6 +41,10 @@ _SIGNUP;
 ?>
 
 <?php //Sign-Up Validation
+if(isset($_SESSION['username'])) {
+    echo "<script>alert('You already have an account.'); window.location.href = 'home.php';</script>";
+    exit();
+}
 
 // Check if request is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -24,13 +24,13 @@
 
   createTable('messages', 
               'id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-              auth VARCHAR(16),
-              recip VARCHAR(16),
+              sender VARCHAR(16),
+              recipient VARCHAR(16),
               pm CHAR(1),
               time INT UNSIGNED,
               message VARCHAR(4096),
-              INDEX(auth(6)),
-              INDEX(recip(6))');
+              INDEX(sender(6)),
+              INDEX(recipient(6))');
               
   createTable('friends',
               'user VARCHAR(16),
