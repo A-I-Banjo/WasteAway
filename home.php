@@ -2,6 +2,7 @@
 require_once 'navbar.php';
 
 
+
 //$rown=null;
 //$item_id = queryMysql("SELECT item_id FROM items")->fetchColumn();
 //$images = queryMysql("SELECT image_path FROM items WHERE member_id=(SELECT member_id FROM members WHERE username='$username')")->fetchColumn();
@@ -13,70 +14,39 @@ require_once 'navbar.php';
 $images = queryMysql("SELECT * FROM items WHERE member_id != (SELECT member_id FROM members WHERE username='$username')")->fetchAll(PDO::FETCH_ASSOC);
 
 echo "<div class='row image-container'>"; 
-
 foreach ($images as $image) {
-$recipient_id = $_SESSION['recipient_id'] = queryMysql("SELECT member_id FROM items WHERE item_id='" . $image['item_id'] . "'")->fetchColumn();
-$recipient_username = $_SESSION['recipient_username'] = queryMysql("SELECT username FROM members WHERE member_id='" . $_SESSION['recipient_id'] . "'")->fetchColumn();
-
-
+$poster_username = queryMysql("SELECT username FROM members WHERE member_id='" . $image['member_id'] . "'")->fetchColumn(); //get the username of the person who posted the item. This will be used in the message modal to message the seller.
+ $averageString = "No ratings";
+//Calculate rating
+    $result = queryMysql("SELECT AVG(rating) AS avg_rating FROM user_reviews WHERE reviewee='$username'")->fetch(PDO::FETCH_OBJ);
+    //Convert PDO object to string and provide a default if no ratings exist.
+   
+    if ($result && isset($result->avg_rating) && $result->avg_rating !== null) {
+        // format to 2 decimal places
+        $averageString = number_format((float)$result->avg_rating, 2);
+    }
     echo "<div class='col-md-3 mb-3'>";
     echo "<div class='card'>";
     echo "<img src='" . $image['image_path'] . "' class='card-img-top' alt='" . $image['item_name'] . "'>";
     echo "<div class='card-body'>";
-    echo "<h5 class='card-title'>" . $image['item_name'] . "</h5>";
+    echo "<h5 class='card-title'><b><u>" . $image['item_name'] . "</b></u></h5>";
     echo "<p class='card-text'>Price: R" . $image['item_price'] . "</p>";
+    echo "<p class='card-text'>Expiry Date: " . $image['expiry_date'] . "</p>";
     echo "<p class='card-text'>Quantity: " . $image['quantity'] . "</p>";
-    echo "<form method='post' action='home.php' enctype='multipart/form-data'>";
-    echo "<p class='card-text'><button class='btn btn-primary signup-btn' data-bs-toggle='modal' data-bs-target='#messageModal' type='button' name='buy'>Buy</button></p>";
-    echo "</form>";
+    echo "<p class='card-text'>Posted by: " . $poster_username . "</p>";
+    echo "<p class='card-text'>Poster Rating: " . $averageString . "</p>";
     echo "</div>";
-    echo "</div>";
-    echo "</div>";
-
-    
-echo <<<_MESSAGE
-<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="messageModalLabel">Message $recipient_username</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method='post' action='messages.php' enctype='multipart/form-data'>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text" name='message'></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-_MESSAGE;
+    echo "</div>";  
+    echo "</div>"; 
 } 
 echo   "</div>"; 
+ 
 
 if (empty($images)) {
     echo "<p>No items available.</p>";
 }
 
-if(isset($_POST['buy'])) {
-    $item_quantity = queryMysql("SELECT quantity FROM items WHERE item_id='" . $image['item_id'] . "'")->fetchColumn();
-    if ($item_quantity <= 0) {
-        echo "<script>alert('Sorry, this item is out of stock.');</script>";
-        //ADMIN can delete item from database if quantity is 0.
-        exit();
-    } 
 
-    if($item_quantity > 0){
-        $item_id = $image['item_id'];
-        $_SESSION['item_id'] = $item_id;
 
           
 
@@ -110,8 +80,7 @@ _MESSAGE;
         header("Location: messages.php");
         exit();
 */
-    }
-}
+    
     /*decrement quantity of item by 1
     $item_id = $image['item_id'];
     // AFTER MESSAGE IS SENT --->> $quantity = $image['quantity'] - 1;

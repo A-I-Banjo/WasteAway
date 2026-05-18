@@ -24,25 +24,30 @@
 
   createTable('messages', 
               'id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-              sender VARCHAR(16),
-              recipient VARCHAR(16),
-              pm CHAR(1),
-              time INT UNSIGNED,
-              message VARCHAR(4096),
+              sender VARCHAR(16) NOT NULL,
+              recipient VARCHAR(16) NOT NULL,
+              message VARCHAR(4096) NOT NULL,
+              date DATE,
+              time TIME,
               INDEX(sender(6)),
               INDEX(recipient(6))');
               
+createTable('user_reviews', 
+              'id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              reviewer VARCHAR(35) NOT NULL,
+              reviewee VARCHAR(35) NOT NULL,
+              message VARCHAR(4096) NOT NULL,
+              rating INT (1) NOT NULL');
+
   createTable('friends',
-              'user VARCHAR(16),
-              friend VARCHAR(16),
+              'user VARCHAR(16) NOT NULL,
+              friend VARCHAR(16) NOT NULL,
               INDEX(user(6)),
               INDEX(friend(6))');
 
   createTable('profiles',
-              'user VARCHAR(16),
-              text VARCHAR(4096),
+              'user VARCHAR(16) NOT NULL,
+              text VARCHAR(4096) NOT NULL,
               INDEX(user(6))');    
-              
-  //createTable('suburbs', 'suburb VARCHAR(50), INDEX(suburb(6))');
-                            
+                 
 ?>

@@ -11,7 +11,7 @@ echo <<<_SIGNUP
 <form name="signup-form" class="form" method="post">  
   <div class="col-md-2">
     <div class="input-group has-validation">
-      <input type="text" name="username" placeholder="Enter Username" class="form-control" aria-describedby="inputGroupPrepend" maxlength="50" required>
+      <input type="text" name="username" placeholder="Enter Username" class="form-control" aria-describedby="inputGroupPrepend" minlength= "3" maxlength="50" required>
     </div>
   </div>
 

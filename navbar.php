@@ -10,6 +10,7 @@ echo <<<_HEAD
     <meta name='viewport' content='width=device-width, initial-scale=1'>  
     <script src='bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js'></script>
     <script src='jquery/jquery.mobile-1.4.5.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <link rel='stylesheet' href='bootstrap-5.3.8-dist/css/bootstrap.min.css'>
     <link rel='stylesheet' href='jquery/jquery.mobile-1.4.5.min.css'>
     <link rel='stylesheet' href='styles.css' type='text/css'>
@@ -56,8 +57,9 @@ echo <<<_NAVBAR
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="upload.php">Upload</a></li>
-              <li><a class="dropdown-item" href="#">Messages</a></li>
-              <li><a class="dropdown-item" href="#">Members</a></li>
+              <li><a class="dropdown-item" href="update_upload.php">Update Upload</a></li>
+              <li><a class="dropdown-item" href="chat.php">Chat With A Member</a></li>
+              <li><a class="dropdown-item" href="review.php">Review A Member</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -65,10 +67,6 @@ echo <<<_NAVBAR
             </ul>
           </li>
         </ul>
-        <form class="d-flex mt-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </div>

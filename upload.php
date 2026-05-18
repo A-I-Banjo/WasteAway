@@ -6,24 +6,29 @@ if($loggedin) {
 echo <<<_UPLOAD
 <form class="upload-form" method="post" enctype="multipart/form-data">
   
-Upload images of items you want to sell: <br>
+<h2> Upload image of item to sell: </h2><br>
   <input type="file" name="fileToUpload" id="fileToUpload">
+  <br><br>
 
   <div class="col-md-10">
       <input type="text" name="item" placeholder="Item Name" class="form-control" aria-describedby="inputGroupPrepend" maxlength="50" required>
   </div>
+  <br>
 
   <div class="col-md-10">
       <input type="number" min="1" name="price" placeholder="Item Price" class="form-control" aria-describedby="inputGroupPrepend" minlength="10" required>
   </div>
+  <br>
 
   <div class="col-md-10">
      Expiry Date: <input type="date" name="expiry" placeholder="Expiry Date" class="form-control" aria-describedby="inputGroupPrepend" minlength="4" required>
   </div>
+  <br>
 
 <div class="col-md-10">
 <input type="number" min="1" name="quantity" placeholder="Quantity" class="form-control" aria-describedby="inputGroupPrepend" minlength="4" required>
   </div>
+  <br>
 
   <div class="col-2">
     <button class="btn btn-primary signup-btn" input type="submit" name="upload">Upload</button>
@@ -111,7 +116,7 @@ if (isset($_POST['upload'])) {
     elseif (is_array($result)) {
       $row = $result;
     }
-    echo "<script>alert('The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.');</script>";
+    echo "<script>alert('The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded successfully.'); window.location.href = 'profile.php';</script>";
     } else {
       echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
     }

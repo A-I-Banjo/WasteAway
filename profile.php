@@ -29,6 +29,17 @@ if ($result->rowCount())
   }
 
   $text = stripslashes(preg_replace('/\s\s+/', ' ', $text));
+ 
+
+   //Calculate rating
+    $result = queryMysql("SELECT AVG(rating) AS avg_rating FROM user_reviews WHERE reviewee='$username'")->fetch(PDO::FETCH_OBJ);
+    //Convert PDO object to string and provide a default if no ratings exist.
+    $averageString = "No ratings";
+    if ($result && isset($result->avg_rating) && $result->avg_rating !== null) {
+        // format to 2 decimal places
+        $averageString = number_format((float)$result->avg_rating, 2);
+    }
+
 
 echo <<<_PROFILE
 
@@ -36,6 +47,7 @@ echo <<<_PROFILE
   <h1>$username's Profile</h1>
   <img class="profile-pic" src='$username.jpg' style='float:left;'>
   </div>
+  <h4> Rating: $averageString </h4>
 
       <form class="update-bio" data-ajax='false' method='post' enctype='multipart/form-data'>
       <h3>$text</h3>
@@ -86,18 +98,17 @@ _PROFILE;
       }
 
       $tmp = imagecreatetruecolor($tw, $th);
-      imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
+      //imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
       imageconvolution($tmp, array(array(-1, -1, -1),
         array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
       imagejpeg($tmp, $saveto);
-      imagedestroy($tmp);
-      imagedestroy($src);
+      //imagedestroy($tmp);
+      //imagedestroy($src);
     }
   }
 
 
-echo '<h2>Your Listings</h2>';
-
+echo '<h2>Your Uploaded Items</h2>';
 $images = queryMysql("SELECT * FROM items WHERE member_id = (SELECT member_id FROM members WHERE username='$username')")->fetchAll(PDO::FETCH_ASSOC);
 echo "<div class='row image-container'>"; 
 foreach ($images as $image) {
@@ -110,20 +121,19 @@ foreach ($images as $image) {
     echo "<p class='card-text'>Quantity: " . $image['quantity'] . "</p>";
     echo "<form method='post' action='profile.php' enctype='multipart/form-data'>";
     echo "<p class='card-text'><button class='btn btn-primary signup-btn' type='submit' name='delete'>Delete</button></p>";
-    echo "<p class='card-text'><button class='btn btn-primary signup-btn' type='submit' name='edit'>Edit</button></p>";
+    echo "<p class='card-text'><button class='btn btn-primary signup-btn' type='submit' name='update'>Update</button></p>";
     echo "</form>";
     echo "</div>";
     echo "</div>";
     echo "</div>";
-    if(isset($_POST['delete'])) {
+}
+   if(isset($_POST['delete'])) {
     queryMysql("DELETE FROM items WHERE item_id='" . $image['item_id'] . "'");
     echo "<script>alert('Item deleted successfully.'); window.location.href = 'profile.php';</script>";
-
-    if(isset($_POST['edit'])) {
+    }
+    if(isset($_POST['update'])) {
     $_SESSION['edit_item_id'] = $image['item_id'];
-    echo "<script>window.location.href='edit_item.php';</script>";
-}
-}
+    echo "<script>window.location.href='update_upload.php';</script>";
 } 
 echo   "</div>"; 
 
